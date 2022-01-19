@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <script src="https://vuejs.org/js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="section">
+        <div id="app" class="has-text-centered">
+            <div class="columns">
+                <div class="column">
+                    <h1 class="is-size-2">Conversor de bases numéricas</h1>
+                    <div v-show="!mostrarNotificacion" class="notification is-cyan">
+                        Este <strong>conversor de bases numéricas</strong> puede convertir un número ya sea decimal, binario,
+                        octal y
+                        hexadecimal a cualquier otra base númerica.
+                        Escribe el número, selecciona la <strong>base</strong> y la conversión
+                        se realizara automáticamente.
+                    </div>
+
+                    <div v-show="mostrarNotificacion" class="notification is-warning">
+                        Copiado al portapapeles <i class="fa fa-check"></i>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input v-model="numero" autofocus class="input" type="text" placeholder="Ingrese el número que desea convertir">
+                        </div>
+                        <br>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <p>Seleccione la base númerica...</p>
+                            <!--Se crean los radio botton para que el usuario seleccione la base numerica-->
+                            <br>
+                            <label class="radio">
+                                <input v-model="baseSeleccionada" value="2" type="radio" name="tipoConversion">
+                                Binario
+                            </label>
+                            <label class="radio">
+                                <input v-model="baseSeleccionada" value="8" type="radio" name="tipoConversion">
+                                Octal
+                            </label>
+                            <label class="radio">
+                                <input v-model="baseSeleccionada" value="10" type="radio" name="tipoConversion">
+                                Decimal
+                            </label>
+                            <label class="radio">
+                                <input v-model="baseSeleccionada" value="16" type="radio" name="tipoConversion">
+                                Hexadecimal
+                            </label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="field has-addons">
+                        <div class="control">
+                            <a class="button is-link">
+                                BINARIO
+                            </a>
+                        </div>
+                        <div class="control is-expanded">
+                            <input v-model="binario" readonly class="input" type="text" placeholder="Aquí aparecerá en binario">
+                        </div>
+                        <div class="control">
+                            <a title="Copiar al portapapeles" @click="copiarAlPortapapeles(binario)" class="button is-success">
+                                <i class="fa fa-copy"></i><!--icono para realizar la copia de un numero-->
+                            </a>
+                        </div>
+                    </div>
+                    <div class="field has-addons">
+
+                        <div class="control">
+                            <a class="button is-link">
+                                OCTAL
+                            </a>
+                        </div>
+                        <div class="control is-expanded">
+                            <input v-model="octal" readonly class="input" type="text" placeholder="Aquí aparecerá en octal">
+                        </div>
+                        <div class="control">
+                            <a @click="copiarAlPortapapeles(octal)" class="button is-success">
+                                <i class="fa fa-copy"></i><!--icono para realizar la copia de un numero-->
+                            </a>
+                        </div>
+                    </div>
+                    <div class="field has-addons">
+
+                        <div class="control">
+                            <a class="button is-link">
+                                DECIMAL
+                            </a>
+                        </div>
+                        <div class="control is-expanded">
+                            <input v-model="decimal" readonly class="input" type="text" placeholder="Aquí aparecerá en decimal">
+                        </div>
+                        <div class="control">
+                            <a @click="copiarAlPortapapeles(decimal)" class="button is-success">
+                                <i class="fa fa-copy"></i><!--icono para realizar la copia de un numero-->
+                            </a>
+                        </div>
+                    </div>
+                    <div class="field has-addons">
+
+                        <div class="control">
+                            <a class="button is-link">
+                                HEXADECIMAL
+                            </a>
+                        </div>
+                        <div class="control is-expanded">
+                            <input v-model="hexadecimal" readonly class="input" type="text" placeholder="Aquí aparecerá en hexadecimal">
+                        </div>
+                        <div class="control">
+                            <a @click="copiarAlPortapapeles(hexadecimal)" class="button is-success">
+                                <i class="fa fa-copy"></i><!--icono para realizar la copia de un número-->
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+
+    </footer>
+</body>
+<script src="script.js"></script>
+
+</html>
